@@ -1,0 +1,195 @@
+{% extends "layout.html" %}
+{% block body %}
+  
+<div class="col-xs-12 col-sm-5 col-sm-offset-4">
+<div style="padding: 3em; background: #BADAEB;">
+
+<form id='eukaryotic_predict' method='post' action='eukaryotic_predict' enctype="multipart/form-data"> {% csrf_token %} <!-- action is the URL you want to move to next-->
+<font color="#00476B" face="Copperplate Gothic Light" size="5"> <b> ProtFeatures </b> </font>
+<p>    <h3> Select features (Selected all by default) </h3> </p>
+<select id="featuresBox" name="featuresBox" multiple="multiple">
+  <option value="seqLength" label= "Length of sequence" data-section="Physical Properties" selected="selected" data-index="1">Length of sequence</option>
+  <option value="molecularWeight" data-section="Physical Properties" selected="selected" data-index="2" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Molecular Weight</option>
+  <option value="averageResidueWeight" data-section="Physical Properties" selected="selected" data-index="3" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Average Residue Weight</option>
+  
+  <option value="alanineCount" data-section="Physical Properties/Amino Acids Count" selected="selected" data-index="4">Count of alanine</option>
+  <option value="cysteineCount" data-section="Physical Properties/Amino Acids Count" selected="selected" data-index="5">Count of cysteine</option>
+  <option value="asparticAcidCount" data-section="Physical Properties/Amino Acids Count" selected="selected" data-index="6">Count of aspartic acid</option>
+  <option value="glutamicAcidCount" data-section="Physical Properties/Amino Acids Count" selected="selected" data-index="7">Count of glutamic acid</option>
+  <option value="phenylalanineCount" data-section="Physical Properties/Amino Acids Count" selected="selected" data-index="8">Count of phenylalanine</option>
+  <option value="glycineCount" data-section="Physical Properties/Amino Acids Count" selected="selected" data-index="9">Count of glycine</option>
+  <option value="histidineCount" data-section="Physical Properties/Amino Acids Count" selected="selected" data-index="10">Count of histidine</option>
+  <option value="isoleucineCount" data-section="Physical Properties/Amino Acids Count" selected="selected" data-index="11">Count of isoleucine</option>
+  <option value="lysineCount" data-section="Physical Properties/Amino Acids Count" selected="selected" data-index="12">Count of lysine</option>
+  <option value="leucineCount" data-section="Physical Properties/Amino Acids Count" selected="selected" data-index="13">Count of leucine</option>
+  <option value="methionineCount" data-section="Physical Properties/Amino Acids Count" selected="selected" data-index="14">Count of methionine</option>
+  <option value="asparagineCount" data-section="Physical Properties/Amino Acids Count" selected="selected" data-index="15">Count of asparagine</option>
+  <option value="prolineCount" data-section="Physical Properties/Amino Acids Count" selected="selected" data-index="16">Count of proline</option>
+  <option value="glutamineCount" data-section="Physical Properties/Amino Acids Count" selected="selected" data-index="17">Count of glutamine</option>
+  <option value="arginineCount" data-section="Physical Properties/Amino Acids Count" selected="selected" data-index="18">Count of arginine</option>
+  <option value="serineCount" data-section="Physical Properties/Amino Acids Count" selected="selected" data-index="19">Count of serine</option>
+  <option value="threonineCount" data-section="Physical Properties/Amino Acids Count" selected="selected" data-index="20">Count of threonine</option>
+  <option value="valineCount" data-section="Physical Properties/Amino Acids Count" selected="selected" data-index="21">Count of valine</option>
+  <option value="tryptophanCount" data-section="Physical Properties/Amino Acids Count" selected="selected" data-index="22">Count of tryptophan</option>
+  <option value="tyrosineCount" data-section="Physical Properties/Amino Acids Count" selected="selected" data-index="23">Count of tyrosine</option>
+  <option value="tinyMoleCount" data-section="Physical Properties/Amino Acids Count" selected="selected" data-index="24">Count of tiny mole</option>
+  <option value="smallMoleCount" data-section="Physical Properties/Amino Acids Count" selected="selected" data-index="25">Count of small mole</option>
+  
+
+  <option value="alaninePercentage" data-section="Physical Properties/Amino Acids Percentage" selected="selected" data-index="26">Percentage of alanine</option>
+  <option value="cysteinePercentage" data-section="Physical Properties/Amino Acids Percentage" selected="selected" data-index="27">Percentage of cysteine</option>
+  <option value="asparticAcidPercentage" data-section="Physical Properties/Amino Acids Percentage" selected="selected" data-index="28">Percentage of aspartic acid</option>
+  <option value="glutamicAcidPercentage" data-section="Physical Properties/Amino Acids Percentage" selected="selected" data-index="29">Percentage of glutamic acid</option>
+  <option value="phenylalaninePercentage" data-section="Physical Properties/Amino Acids Percentage" selected="selected" data-index="30">Percentage of phenylalanine</option>
+  <option value="glycinePercentage" data-section="Physical Properties/Amino Acids Percentage" selected="selected" data-index="31">Percentage of glycine</option>
+  <option value="histidinePercentage" data-section="Physical Properties/Amino Acids Percentage" selected="selected" data-index="32">Percentage of histidine</option>
+  <option value="isoleucinePercentage" data-section="Physical Properties/Amino Acids Percentage" selected="selected" data-index="33">Percentage of isoleucine</option>
+  <option value="lysinePercentage" data-section="Physical Properties/Amino Acids Percentage" selected="selected" data-index="34">Percentage of lysine</option>
+  <option value="leucinePercentage" data-section="Physical Properties/Amino Acids Percentage" selected="selected" data-index="35">Percentage of leucine</option>
+  <option value="methioninePercentage" data-section="Physical Properties/Amino Acids Percentage" selected="selected" data-index="36">Percentage of methionine</option>
+  <option value="asparaginePercentage" data-section="Physical Properties/Amino Acids Percentage" selected="selected" data-index="37">Percentage of asparagine</option>
+  <option value="prolinePercentage" data-section="Physical Properties/Amino Acids Percentage" selected="selected" data-index="38">Percentage of proline</option>
+  <option value="glutaminePercentage" data-section="Physical Properties/Amino Acids Percentage" selected="selected" data-index="39">Percentage of glutamine</option>
+  <option value="argininePercentage" data-section="Physical Properties/Amino Acids Percentage" selected="selected" data-index="40">Percentage of arginine</option>
+  <option value="serinePercentage" data-section="Physical Properties/Amino Acids Percentage" selected="selected" data-index="41">Percentage of serine</option>
+  <option value="threoninePercentage" data-section="Physical Properties/Amino Acids Percentage" selected="selected" data-index="42">Percentage of threonine</option>
+  <option value="valinePercentage" data-section="Physical Properties/Amino Acids Percentage" selected="selected" data-index="43">Percentage of valine</option>
+  <option value="tryptophanPercentage" data-section="Physical Properties/Amino Acids Percentage" selected="selected" data-index="44">Percentage of tryptophan</option>
+  <option value="tyrosinePercentage" data-section="Physical Properties/Amino Acids Percentage" selected="selected" data-index="45">Percentage of tyrosine</option>
+  <option value="tinyMolePercentage" data-section="Physical Properties/Amino Acids Count" selected="selected" data-index="46">Percentage of tiny mole</option>
+  <option value="smallMolePercentage" data-section="Physical Properties/Amino Acids Count" selected="selected" data-index="47">Percentage of small mole</option>
+  
+
+  <option value="alanineDayhoffStat" data-section="Physical Properties/Amino Acids Dayhoff statistic" selected="selected" data-index="48" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Dayhoff statistic of alanine</option>
+  <option value="cysteineDayhoffStat" data-section="Physical Properties/Amino Acids Dayhoff statistic" selected="selected" data-index="49" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Dayhoff statistic of cysteine</option>
+  <option value="asparticAcidDayhoffStat" data-section="Physical Properties/Amino Acids Dayhoff statistic" selected="selected" data-index="50" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Dayhoff statistic of aspartic acid</option>
+  <option value="glutamicAcidDayhoffStat" data-section="Physical Properties/Amino Acids Dayhoff statistic" selected="selected" data-index="51" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Dayhoff statistic of glutamic acid</option>
+  <option value="phenylalanineDayhoffStat" data-section="Physical Properties/Amino Acids Dayhoff statistic" selected="selected" data-index="52" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Dayhoff statistic of phenylalanine</option>
+  <option value="glycineDayhoffStat" data-section="Physical Properties/Amino Acids Dayhoff statistic" selected="selected" data-index="53" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Dayhoff statistic of glycine</option>
+  <option value="histidineDayhoffStat" data-section="Physical Properties/Amino Acids Dayhoff statistic" selected="selected" data-index="54" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Dayhoff statistic of histidine</option>
+  <option value="isoleucineDayhoffStat" data-section="Physical Properties/Amino Acids Dayhoff statistic" selected="selected" data-index="55" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Dayhoff statistic of isoleucine</option>
+  <option value="lysineDayhoffStat" data-section="Physical Properties/Amino Acids Dayhoff statistic" selected="selected" data-index="56" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Dayhoff statistic of lysine</option>
+  <option value="leucineDayhoffStat" data-section="Physical Properties/Amino Acids Dayhoff statistic" selected="selected" data-index="57" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Dayhoff statistic of leucine</option>
+  <option value="methionineDayhoffStat" data-section="Physical Properties/Amino Acids Dayhoff statistic" selected="selected" data-index="58" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Dayhoff statistic of methionine</option>
+  <option value="asparagineDayhoffStat" data-section="Physical Properties/Amino Acids Dayhoff statistic" selected="selected" data-index="59" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Dayhoff statistic of asparagine</option>
+  <option value="prolineDayhoffStat" data-section="Physical Properties/Amino Acids Dayhoff statistic" selected="selected" data-index="60" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Dayhoff statistic of proline</option>
+  <option value="glutamineDayhoffStat" data-section="Physical Properties/Amino Acids Dayhoff statistic" selected="selected" data-index="61" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Dayhoff statistic of glutamine</option>
+  <option value="arginineDayhoffStat" data-section="Physical Properties/Amino Acids Dayhoff statistic" selected="selected" data-index="62" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Dayhoff statistic of arginine</option>
+  <option value="serineDayhoffStat" data-section="Physical Properties/Amino Acids Dayhoff statistic" selected="selected" data-index="63" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Dayhoff statistic of serine</option>
+  <option value="threonineDayhoffStat" data-section="Physical Properties/Amino Acids Dayhoff statistic" selected="selected" data-index="64" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Dayhoff statistic of threonine</option>
+  <option value="valineDayhoffStat" data-section="Physical Properties/Amino Acids Dayhoff statistic" selected="selected" data-index="65" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Dayhoff statistic of valine</option>
+  <option value="tryptophanDayhoffStat" data-section="Physical Properties/Amino Acids Dayhoff statistic" selected="selected" data-index="66" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Dayhoff statistic of tryptophan</option>
+  <option value="tyrosineDayhoffStat" data-section="Physical Properties/Amino Acids Dayhoff statistic" selected="selected" data-index="67" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Dayhoff statistic of tyrosine</option>
+  
+  <option value="carbonCount" data-section="Elemental Sparing/Elemental Sparing Count" selected="selected" data-index="68" 
+  data-description="------Count of carbon in the protein sequence------
+  Alanine=C3H7NO2, Arginine=C6H14N4O2, Asparagine=C4H8N2O3, Aspartic acid=C4H7NO4, Cysteine=C3H7NO2S, Glutamine=C5H10N2O3, Glutamic acid=C5H9NO4, Glycine=C2H5NO2, Histidine=C6H9N3O2, Isoleucine=C6H13NO2, Leucine=C6H13NO2, Lysine=C6H14N2O2, Methionine=C5H11NO2S, Phenylalanine=C9H11NO2, Proline=C5H9NO2, Serine=C3H7NO3, Threonine=C4H9NO3, Tryptophan=C11H12N2O2, Tyrosine=C9H11NO3, Valine=C5H11NO2"
+	   >Count of carbon sparing</option>
+  <option value="nitrogenCount" data-section="Elemental Sparing/Elemental Sparing Count" selected="selected" data-index="69"
+  data-description="------Count of nitrogen in the protein sequence------
+  Alanine=C3H7NO2, Arginine=C6H14N4O2, Asparagine=C4H8N2O3, Aspartic acid=C4H7NO4, Cysteine=C3H7NO2S, Glutamine=C5H10N2O3, Glutamic acid=C5H9NO4, Glycine=C2H5NO2, Histidine=C6H9N3O2, Isoleucine=C6H13NO2, Leucine=C6H13NO2, Lysine=C6H14N2O2, Methionine=C5H11NO2S, Phenylalanine=C9H11NO2, Proline=C5H9NO2, Serine=C3H7NO3, Threonine=C4H9NO3, Tryptophan=C11H12N2O2, Tyrosine=C9H11NO3, Valine=C5H11NO2"
+  >Count of nitrogen sparing</option>
+  <option value="sulphurCount" data-section="Elemental Sparing/Elemental Sparing Count" selected="selected" data-index="70"
+  data-description="------Count of sulphur in the protein sequence------
+  Alanine=C3H7NO2, Arginine=C6H14N4O2, Asparagine=C4H8N2O3, Aspartic acid=C4H7NO4, Cysteine=C3H7NO2S, Glutamine=C5H10N2O3, Glutamic acid=C5H9NO4, Glycine=C2H5NO2, Histidine=C6H9N3O2, Isoleucine=C6H13NO2, Leucine=C6H13NO2, Lysine=C6H14N2O2, Methionine=C5H11NO2S, Phenylalanine=C9H11NO2, Proline=C5H9NO2, Serine=C3H7NO3, Threonine=C4H9NO3, Tryptophan=C11H12N2O2, Tyrosine=C9H11NO3, Valine=C5H11NO2"
+  >Count of sulphur sparing</option>
+  <option value="oxygenCount" data-section="Elemental Sparing/Elemental Sparing Count" selected="selected" data-index="71"
+  data-description="------Count of oxygen in the protein sequence------
+  Alanine=C3H7NO2, Arginine=C6H14N4O2, Asparagine=C4H8N2O3, Aspartic acid=C4H7NO4, Cysteine=C3H7NO2S, Glutamine=C5H10N2O3, Glutamic acid=C5H9NO4, Glycine=C2H5NO2, Histidine=C6H9N3O2, Isoleucine=C6H13NO2, Leucine=C6H13NO2, Lysine=C6H14N2O2, Methionine=C5H11NO2S, Phenylalanine=C9H11NO2, Proline=C5H9NO2, Serine=C3H7NO3, Threonine=C4H9NO3, Tryptophan=C11H12N2O2, Tyrosine=C9H11NO3, Valine=C5H11NO2"
+  >Count of oxygen sparing</option>
+  <option value="hydrogenCount" data-section="Elemental Sparing/Elemental Sparing Count" selected="selected" data-index="72"
+  data-description="------Count of hydrogen in the protein sequence------
+  Alanine=C3H7NO2, Arginine=C6H14N4O2, Asparagine=C4H8N2O3, Aspartic acid=C4H7NO4, Cysteine=C3H7NO2S, Glutamine=C5H10N2O3, Glutamic acid=C5H9NO4, Glycine=C2H5NO2, Histidine=C6H9N3O2, Isoleucine=C6H13NO2, Leucine=C6H13NO2, Lysine=C6H14N2O2, Methionine=C5H11NO2S, Phenylalanine=C9H11NO2, Proline=C5H9NO2, Serine=C3H7NO3, Threonine=C4H9NO3, Tryptophan=C11H12N2O2, Tyrosine=C9H11NO3, Valine=C5H11NO2"
+  >Count of hydrogen sparing</option>
+  
+  <option value="carbonSparingAverage" data-section="Elemental Sparing/Average Elemental Sparing" selected="selected" data-index="73" data-description="Elemental_Sparing_Count/Length_of_sequence">Average carbon sparing</option>
+  <option value="nitrogenSparingAverage" data-section="Elemental Sparing/Average Elemental Sparing" selected="selected" data-index="74" data-description="Elemental_Sparing_Count/Length_of_sequence">Average nitrogen sparing</option>
+  <option value="sulphurSparingAverage" data-section="Elemental Sparing/Average Elemental Sparing" selected="selected" data-index="75" data-description="Elemental_Sparing_Count/Length_of_sequence">Average sulphur sparing</option>
+  <option value="oxygenSparingAverage" data-section="Elemental Sparing/Average Elemental Sparing" selected="selected" data-index="76" data-description="Elemental_Sparing_Count/Length_of_sequence">Average oxygen sparing</option>
+  <option value="hydrogenSparingAverage" data-section="Elemental Sparing/Average Elemental Sparing" selected="selected" data-index="77" data-description="Elemental_Sparing_Count/Length_of_sequence">Average hydrogen sparing</option>
+  
+  <option value="aromaticity" data-section="Chemical Properties" selected="selected" data-index="78" data-description="By Pepstats (http://web.expasy.org/protparam/)">Aromaticity</option>
+  <option value="instabilityIndex" data-section="Chemical Properties" selected="selected" data-index="79" data-description="By Pepstats (http://web.expasy.org/protparam/)">Instability Index</option>
+  <option value="isoelectricPoint" data-section="Chemical Properties" selected="selected" data-index="80" data-description="By Pepstats (http://web.expasy.org/protparam/)">Isoelectric Point</option>
+  <option value="gravy" data-section="Chemical Properties" selected="selected" data-index="81" data-description="By Pepstats (http://web.expasy.org/protparam/)">Grand average of hydropathy (GRAVY)</option>
+  <option value="charge" data-section="Chemical Properties" selected="selected" data-index="82" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Charge</option>
+  <option value="molarExtinctionCoefficient" data-section="Chemical Properties" selected="selected" data-index="83" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Molar Extinction Coefficient A280</option>
+  <option value="absobance" data-section="Chemical Properties" selected="selected" data-index="84" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Absobance A280</option>
+  <option value="probabilityOfExpression" data-section="Chemical Properties" selected="selected" data-index="85" data-description="By Pepstats (http://www.ebi.ac.uk/Tools/seqstats/emboss_pepstats/)">Probability of Expression Inclusion Bodies</option>
+  
+  <option value="aliphaticMoleCount" data-section="Chemical Properties/Acidity, Charge, Polarity Count" selected="selected" data-index="86" data-description="(A+I+L+V)">Count  of aliphatic mole</option>
+  <option value="aromaticMoleCount" data-section="Chemical Properties/Acidity, Charge, Polarity Count" selected="selected" data-index="87" data-description="(F+H+W+Y)">Count  of aromatic mole</option>
+  <option value="polarMoleCount" data-section="Chemical Properties/Acidity, Charge, Polarity Count" selected="selected" data-index="88" data-description="(D+E+H+K+N+Q+R+S+T+Z)">Count  of polar mole</option>
+  <option value="nonPolarMoleCount" data-section="Chemical Properties/Acidity, Charge, Polarity Count" selected="selected" data-index="89" data-description="(A+C+F+G+I+L+M+P+V+W+Y)">Count  of non polar  mole</option>
+  <option value="chargedMoleCount" data-section="Chemical Properties/Acidity, Charge, Polarity Count" selected="selected" data-index="90" data-description="(B+D+E+H+K+R+Z)">Count  of charged mole</option>
+  <option value="acidicMoleCount" data-section="Chemical Properties/Acidity, Charge, Polarity Count" selected="selected" data-index="91" data-description="(B+D+E+Z)">Count  of acidic mole</option>
+  <option value="basicMoleCount" data-section="Chemical Properties/Acidity, Charge, Polarity Count" selected="selected" data-index="92" data-description="(H+K+R)">Count of basic mole</option>
+  
+  <option value="aliphaticMolePercentage" data-section="Chemical Properties/Acidity, Charge, Polarity Percentage" selected="selected" data-index="93" data-description="(A+I+L+V)*100/Length_of_sequence">Percentage  of aliphatic mole</option>
+  <option value="aromaticMolePercentage" data-section="Chemical Properties/Acidity, Charge, Polarity Percentage" selected="selected" data-index="94" data-description="(F+H+W+Y)*100/Length_of_sequence">Percentage  of aromatic mole</option>
+  <option value="polarMolePercentage" data-section="Chemical Properties/Acidity, Charge, Polarity Percentage" selected="selected" data-index="95" data-description="(D+E+H+K+N+Q+R+S+T+Z)*100/Length_of_sequence">Percentage  of polar mole</option>
+  <option value="nonPolarMolePercentage" data-section="Chemical Properties/Acidity, Charge, Polarity Percentage" selected="selected" data-index="96" data-description="(A+C+F+G+I+L+M+P+V+W+Y)*100/Length_of_sequence">Percentage  of non polar  mole</option>
+  <option value="chargedMolePercentage" data-section="Chemical Properties/Acidity, Charge, Polarity Percentage" selected="selected" data-index="97" data-description="(B+D+E+H+K+R+Z)*100/Length_of_sequence">Percentage  of charged mole</option>
+  <option value="acidicMolePercentage" data-section="Chemical Properties/Acidity, Charge, Polarity Percentage" selected="selected" data-index="98" data-description="(B+D+E+Z)*100/Length_of_sequence">Percentage  of acidic mole</option>
+  <option value="basicMolePercentage" data-section="Chemical Properties/Acidity, Charge, Polarity Percentage" selected="selected" data-index="99" data-description="(H+K+R)*100/Length_of_sequence">Percentage of basic mole</option>
+  
+  <option value="helixFraction" data-section="Structural Properties/Secondary Structure Fractions" selected="selected" data-index="100" data-description="By Protparam (http://web.expasy.org/protparam/)">Secondary helix fraction</option>
+  <option value="turnFraction" data-section="Structural Properties/Secondary Structure Fractions" selected="selected" data-index="101" data-description="By Protparam (http://web.expasy.org/protparam/)">Secondary turn fraction</option>
+  <option value="sheetFraction" data-section="Structural Properties/Secondary Structure Fractions" selected="selected" data-index="102" data-description="By Protparam (http://web.expasy.org/protparam/)">Secondary sheet fraction</option>
+  
+  <option value="secondaryHelixCount" data-section="Structural Properties/Secondary Structure Count" selected="selected" data-index="103" data-description="By Garnier (http://emboss.sourceforge.net/apps/release/6.2/emboss/apps/garnier.html)">Count of secondary helix</option>
+  <option value="secondarySheetCount" data-section="Structural Properties/Secondary Structure Count" selected="selected" data-index="104" data-description="By Garnier (http://emboss.sourceforge.net/apps/release/6.2/emboss/apps/garnier.html)">Count of secondary sheet</option>
+  <option value="secondaryTurnsCount" data-section="Structural Properties/Secondary Structure Count" selected="selected" data-index="105" data-description="By Garnier (http://emboss.sourceforge.net/apps/release/6.2/emboss/apps/garnier.html)">Count of secondary turns</option>
+  <option value="secondaryCoilCount" data-section="Structural Properties/Secondary Structure Count" selected="selected" data-index="106" data-description="By Garnier (http://emboss.sourceforge.net/apps/release/6.2/emboss/apps/garnier.html)">Count of secondary coil</option>
+  
+  <option value="secondaryHelixPercentage" data-section="Structural Properties/Secondary Structure Percentage" selected="selected" data-index="107" data-description="By Garnier (http://emboss.sourceforge.net/apps/release/6.2/emboss/apps/garnier.html)">Percentage of secondary helix</option>
+  <option value="secondarySheetPercentage" data-section="Structural Properties/Secondary Structure Percentage" selected="selected" data-index="108" data-description="By Garnier (http://emboss.sourceforge.net/apps/release/6.2/emboss/apps/garnier.html)">Percentage of secondary sheet</option>
+  <option value="secondaryTurnsPercentage" data-section="Structural Properties/Secondary Structure Percentage" selected="selected" data-index="109" data-description="By Garnier (http://emboss.sourceforge.net/apps/release/6.2/emboss/apps/garnier.html)">Percentage of secondary turns</option>
+  <option value="secondaryCoilPercentage" data-section="Structural Properties/Secondary Structure Percentage" selected="selected" data-index="110" data-description="By Garnier (http://emboss.sourceforge.net/apps/release/6.2/emboss/apps/garnier.html)">Percentage of secondary coil</option>
+  
+  <option value="cMannosylation" data-section="Binding Sites" selected="selected" data-index="111" data-description="By NetCGlyc v. 1.0 (http://www.cbs.dtu.dk/services/NetCGlyc/)">C-mannosylation sites</option>
+  <option value="proteasomalCleavage" data-section="Binding Sites" selected="selected" data-index="112" data-description="By NetChop v. 3.1 (http://www.cbs.dtu.dk/services/NetChop/)">Proteasomal cleavages (MHC ligands)</option>
+  <option value="nLinkedGlycosylation" data-section="Binding Sites" selected="selected" data-index="113" data-description="By NetNGlyc v. 1.0 (http://www.cbs.dtu.dk/services/NetNGlyc/)">N-linked glycosylation sites</option>
+  <option value="genericPhosphorylationSerine" data-section="Binding Sites" selected="selected" data-index="114" data-description="By NetPhos v. 3.1 (http://www.cbs.dtu.dk/services/NetPhos/)">Generic phosphorylation sites of serine</option>
+  <option value="genericPhosphorylationThreonine" data-section="Binding Sites" selected="selected" data-index="115" data-description="By NetPhos v. 3.1 (http://www.cbs.dtu.dk/services/NetPhos/)">Generic phosphorylation sites of threonine</option>
+  <option value="genericPhosphorylationTyrosine" data-section="Binding Sites" selected="selected" data-index="116" data-description="By NetPhos v. 3.1 (http://www.cbs.dtu.dk/services/NetPhos/)">Generic phosphorylation sites of tyrosine</option>
+  <option value="arginineLysinePropeptideCleavage" data-section="Binding Sites" selected="selected" data-index="117" data-description="By ProP v. 1.0c (http://www.cbs.dtu.dk/services/ProP/)">Arginine and lysine propeptide cleavage sites</option>
+  <option value="bindingRegionsDisordered" data-section="Binding Sites" selected="selected" data-index="118" data-description="By ANCHOR (http://anchor.enzim.hu/)">Binding Regions in Disordered Proteins</option>
+  
+  <option value="mTP" data-section="Subcellular Location" selected="selected" data-index="119" data-description="By TargetP v. 1.1 (http://www.cbs.dtu.dk/services/TargetP/)">Mitochondrial targeting peptide (mTP)</option>
+  <option value="sP" data-section="Subcellular Location" selected="selected" data-index="120" data-description="By TargetP v. 1.1 (http://www.cbs.dtu.dk/services/TargetP/)">Secretory pathway signal peptide (SP) </option>
+  <option value="otherLocation" data-section="Subcellular Location" selected="selected" data-index="121" data-description="By TargetP v. 1.1 (http://www.cbs.dtu.dk/services/TargetP/)">Other subcellular location</option>
+  <option value="transmembraneHelices" data-section="Subcellular Location" selected="selected" data-index="122" data-description="By TMHMM v. 2.0c (http://www.cbs.dtu.dk/services/TMHMM/)">Count of transmembrane helices</option>
+  <option value="signalPeptides" data-section="Subcellular Location" selected="selected" data-index="123" data-description="By SignalP v. 4.1 (http://www.cbs.dtu.dk/services/SignalP/)">Presence of signal peptides</option>
+  
+  <option value="linearBcellEpitopes" data-section="Immunogenic Properties" selected="selected" data-index="124" data-description="By BepiPred v. 1.0b (http://www.cbs.dtu.dk/services/BepiPred/)">Count of linear B-cell epitopes</option>
+  <option value="classIimmunogenicity" data-section="Immunogenic Properties" selected="selected" data-index="125" data-description="By IEDB Immunogenicity v. 1.0 (http://tools.iedb.org/immunogenicity/)">Class I Immunogenicity score</option>
+
+</select>
+   <p> 
+   <h3> Enter FASTA sequence(s) </h3> 
+   <textarea type='text' name='eukaryotic_sequences' placeholder="FASTA sequence(s)" class="form-control" rows="12" style="min-width: 100%"> </textarea> 
+   </p>
+   <p> 
+   <h3> Or, Upload FASTA File </h3>  
+   <input type='file' name='file'> 
+   </p>
+   <p> </p> 
+   To get the result please enter your email address (optional): <input type="email" name="eukaryotic_email" placeholder="yourname@example.com">
+   <p><br> </br> 
+   <input type='submit' value='Submit' class="eukaryotic_submit_button pull-right" /><!-- value is the text that will appear on the button. --> 
+   <br> </br>
+   </p>
+</form>
+</div>
+</div>
+
+
+<script>
+var options = { hideSidePanel: true, startCollapsed: true, enableSelectAll: true };
+$("select#featuresBox").treeMultiselect(options);
+</script>
+
+
+{% endblock %}
+

@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block body %}
+  
+  
+<div align="justify">
+
+<h4>
+ProtFeatures uses python scripts and third-party tools to predict features from protein sequences. The ProtFeatures server can handle thousands of sequences and there is no limit for sequence number.
+<br></br> <strong>Input.</strong> As input, protein sequences can be uploaded or pasted in fasta format. It is recommended to provide email address for lage number of sequences. The browser window can be closed and the result will be sent by email (if provided) after finishing the job.
+<br></br> <strong>Output.</strong> Features for each protein are provided in a sortable table. Detail of each feature can be viewed by clicking on feature value.
+
+</h4>
+</div>
+<br> </br> 
+
+<div align="center">
+<h2>Select protein type</h2>
+<br> </br> 
+<ul>
+<liBig><a href="eukaryotic_app" class="roundBig blue">Eukaryotic<span class="roundBig">Predicts eukaryotic protein features</span></a></liBig>
+<liBig><a href="prokaryotic_app" class="roundBig red">Prokaryotic<span class="roundBig">Predicts prokaryotic protein features</span></a></liBig>
+</ul> 
+</div>
+<br> </br> <br> </br> 
+
+<div class="disclaimer bg-info" style="padding:10px">
+<b>Disclaimer:</b>
+<br>This tool is provided free of charge and for research purposes only. It is the responsibility of the user to verify the accuracy, completeness, timeliness, quality or suitability for a particular use of the tool provided on this site. The University of Queensland (“UQ”) make no claims , guarantees or warranties about the accuracy, completeness, timeliness, quality or suitability for a particular use of the information/software provided through this website. In particular, UQ does not warrant or guarantee that the tool will be uninterrupted, or free from error or viruses and accepts no liability for any loss of damage suffered by the user. UQ disclaims any and all liability for any claims or damages (including without limitation indirect or consequential loss or damage or any loss of damage arising whatsoever from loss of data or profit arising out of or in connection with the use of this website) that may result from providing the website or the information/software within. The user of this information/software or website assumes all liability and waives any and all claims or causes of action against UQ for all uses of and reliance on the information/software. In addition, UQ reserves the right to modify the tool at any time without notice and in its absolute discretion.
+</br>
+</div>
+
+
+{% endblock %}
+

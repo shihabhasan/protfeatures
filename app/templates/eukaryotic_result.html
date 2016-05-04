@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class=eukaryotic_outut">
+<p> 
+<h2 style="background-color:#00476B; color:white"> <center> Protein features prediction result </center> </h2> 
+</p>
+
+{% load my_templatetags %}
+
+<!--- OUTPUT TABLE --->
+
+<center>
+<div style="width: 70%">
+
+<p><h1> Features </h1></p>
+<div > 
+<table id="eukaryotic_feature" class="display" cellspacing="0" width="100%" >
+
+<thead>
+{% for h in fh %}
+<tr>
+{% for d in h|split:"," %}
+	<td>{{ d }}</td>
+{% endfor %}
+</tr>
+{% endfor %}
+</thead>
+<tbody>
+{% for fl in fd %}
+<tr>
+{% for f in fl|split:"," %}
+	<td>{{ f }}</td>
+{% endfor %}
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+<br></br>
+</center> 
+
+</div>
+</div>
+
+<script>
+$(document).ready( function () {
+	$('#eukaryotic_feature').DataTable({
+		"scrollX": true,
+        dom: 'Bfrtip',
+		scrollY: '50vh',
+        scrollCollapse: true,
+        paging: false,
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5',
+			'print'
+        ]
+	});
+  } );
+  
+
+</script>
+
+{% endblock %}

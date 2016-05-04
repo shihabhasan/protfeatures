@@ -1,0 +1,58 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>ProtFeatures</title>
+
+	{% load staticfiles %}
+	<link rel="shortcut icon" href="{% static 'image/protfeatures_icon.png' %}" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'custom/jquery.tree-multiselect.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'custom/style.css' %}">
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'custom/buttons.dataTables.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
+	
+	<script src="{% static 'custom/jquery.js' %}"></script>
+	<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'custom/jquery.tree-multiselect.min.js' %}"></script>
+	<script src="{% static 'custom/jquery.dataTables.min.js' %}"></script>
+	<script src="{% static 'custom/dataTables.buttons.min.js' %}"></script>
+	<script src="{% static 'custom/jszip.min.js' %}"></script>
+	<script src="{% static 'custom/pdfmake.min.js' %}"></script>
+	<script src="{% static 'custom/vfs_fonts.js' %}"></script>
+	<script src="{% static 'custom/buttons.html5.min.js' %}"></script>
+	<script src="{% static 'custom/buttons.print.min.js' %}"></script>
+
+</head>
+<body> 
+<div class="page">
+	<div class="row">
+		<div class="col-xs-9 col-sm-3">
+			<a href="/home"><img src="{% static 'image/protfeatures_logo.png' %}" alt="protein chain" style="width:450px"></a>
+		</div>
+		<div class="col-xs-3 col-sm-9" style="position:relative; top:20px">
+			<div class="pull-right">
+				<a href="/home" class="btn btn-margin-right"><i class="fa fa-home fa-lg"></i>&nbsp;Home</a>
+				<a href="/help" class="btn btn-margin-right"><i class="fa fa-info-circle fa-lg"></i>&nbsp;Help</a>
+				<a href="/contact" class="btn btn-margin-right"><i class="fa fa-envelope fa-lg"></i>&nbsp;Contact</a>
+			</div>
+		</div>
+			
+
+ 
+		<div class="col-xs-12 col-sm-12">
+			<h1></h1>
+			<h2>Prediction of protein features</h2>
+
+				{% block body %}
+				{% endblock %}
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
