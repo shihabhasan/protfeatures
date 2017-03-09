@@ -40,28 +40,28 @@ featuresDic={'seqLength':'Length of sequence',
 'tyrosineCount':'Count of tyrosine',
 'tinyMoleCount':'Count of tiny mole',
 'smallMoleCount':'Count of small mole',
-'alaninePercentage':'Percentage of tiny mole',
-'cysteinePercentage':'Percentage of small mole',
-'asparticAcidPercentage':'Percentage of alanine',
-'glutamicAcidPercentage':'Percentage of cysteine',
-'phenylalaninePercentage':'Percentage of aspartic acid',
-'glycinePercentage':'Percentage of glutamic acid',
-'histidinePercentage':'Percentage of phenylalanine',
-'isoleucinePercentage':'Percentage of glycine',
-'lysinePercentage':'Percentage of histidine',
-'leucinePercentage':'Percentage of isoleucine',
-'methioninePercentage':'Percentage of lysine',
-'asparaginePercentage':'Percentage of leucine',
-'prolinePercentage':'Percentage of methionine',
-'glutaminePercentage':'Percentage of asparagine',
-'argininePercentage':'Percentage of proline',
-'serinePercentage':'Percentage of glutamine',
-'threoninePercentage':'Percentage of arginine',
-'valinePercentage':'Percentage of serine',
-'tryptophanPercentage':'Percentage of threonine',
-'tyrosinePercentage':'Percentage of valine',
-'tinyMolePercentage':'Percentage of tryptophan',
-'smallMolePercentage':'Percentage of tyrosine',
+'alaninePercentage':'Percentage of alanine',
+'cysteinePercentage':'Percentage of cysteine',
+'asparticAcidPercentage':'Percentage of aspartic acid',
+'glutamicAcidPercentage':'Percentage of glutamic acid',
+'phenylalaninePercentage':'Percentage of phenylalanine',
+'glycinePercentage':'Percentage of glycine',
+'histidinePercentage':'Percentage of histidine',
+'isoleucinePercentage':'Percentage of isoleucine',
+'lysinePercentage':'Percentage of lysine',
+'leucinePercentage':'Percentage of leucine',
+'methioninePercentage':'Percentage of methionine',
+'asparaginePercentage':'Percentage of asparagine',
+'prolinePercentage':'Percentage of proline',
+'glutaminePercentage':'Percentage of glutamine',
+'argininePercentage':'Percentage of arginine',
+'serinePercentage':'Percentage of serine',
+'threoninePercentage':'Percentage of threonine',
+'valinePercentage':'Percentage of valine',
+'tryptophanPercentage':'Percentage of tryptophan',
+'tyrosinePercentage':'Percentage of tyrosine',
+'tinyMolePercentage':'Percentage of tiny mole',
+'smallMolePercentage':'Percentage of small mole',
 'alanineDayhoffStat':'Dayhoff statistic of alanine',
 'cysteineDayhoffStat':'Dayhoff statistic of cysteine',
 'asparticAcidDayhoffStat':'Dayhoff statistic of aspartic acid',
@@ -149,8 +149,9 @@ def run_eukaryotic(filename, email, features_list):
     records=SeqIO.parse(filename, "fasta")
     featuresOutFile=open(filename+"_features.csv", "w")
     featuresOutFile.write('Sequence ID,')
-    for feature in features_list:
+    for feature in features_list[:-1]:
         featuresOutFile.write(featuresDic[str(feature)]+",")
+    featuresOutFile.write(featuresDic[str(features_list[-1])])
     featuresOutFile.write('\n')
         
     for record in records:
@@ -163,7 +164,7 @@ def run_eukaryotic(filename, email, features_list):
     #--------------------EMAIL SENDING--------------------------------------
 
     if email!="":
-        command = "echo 'Your SchistoProt Prediction Result is attached for job ID: "+filename+"\n\n\nKind regards,\n\nLutz Krause & Shihab Hasan\nComputational Medical Genomics Group, The University of Queensland Diamantina Institute' | mutt -a "+filename+"'_result.txt' -a "+filename+"'_features.csv' -s 'SchistoProt Prediction Result' -- "+email
+        command = "echo 'Your SchistoProt Prediction Result is attached for job ID: "+filename+"\n\n\nKind regards,\n\nLutz Krause & Shihab Hasan\nComputational Medical Genomics Group, The University of Queensland Diamantina Institute' | mutt -a "+filename+"'_features.csv' -s 'SchistoProt Prediction Result' -- "+email
         subprocess.call(command, shell=(sys.platform!="Linux"))
 
 

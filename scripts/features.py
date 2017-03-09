@@ -27,8 +27,9 @@ def features(seqID, sequence, features_list):
     for feature in features_list:
         feature=eval(feature)
         parameters=parameters+feature(inFileName)+","
-
+    
     os.remove(inFileName)
+    parameters = parameters.rstrip(",")
     
     return parameters
 

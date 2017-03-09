@@ -7,6 +7,6 @@ def classIimmunogenicity(fileName):
     process = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
 
     lines = process.stdout.readlines()
-    prediction=lines[-1].strip()
+    prediction=str(round(float(lines[-1].strip()), 4))
     return prediction
 

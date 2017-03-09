@@ -30,12 +30,13 @@
 {% for fl in fd %}
 <tr>
 {% for f in fl|split:"," %}
-	<td>{{ f }}</td>
+	<td>{{ f }}</td> 
 {% endfor %}
 </tr>
 {% endfor %}
 </tbody>
 </table>
+<h2><div id="selection"></div></h2>
 </div>
 <br></br>
 </center> 
@@ -43,25 +44,198 @@
 </div>
 </div>
 
+
 <script>
+detailFeaturesDic={'Length of sequence':'seqLength_detail',
+'Molecular Weight':'molecularWeight_detail',
+'Average Residue Weight':'averageResidueWeight_detail',
+'Count of alanine':'alanineCount_detail',
+'Count of cysteine':'cysteineCount_detail',
+'Count of aspartic acid':'asparticAcidCount_detail',
+'Count of glutamic acid':'glutamicAcidCount_detail',
+'Count of phenylalanine':'phenylalanineCount_detail',
+'Count of glycine':'glycineCount_detail',
+'Count of histidine':'histidineCount_detail',
+'Count of isoleucine':'isoleucineCount_detail',
+'Count of lysine':'lysineCount_detail',
+'Count of leucine':'leucineCount_detail',
+'Count of methionine':'methionineCount_detail',
+'Count of asparagine':'asparagineCount_detail',
+'Count of proline':'prolineCount_detail',
+'Count of glutamine':'glutamineCount_detail',
+'Count of arginine':'arginineCount_detail',
+'Count of serine':'serineCount_detail',
+'Count of threonine':'threonineCount_detail',
+'Count of valine':'valineCount_detail',
+'Count of tryptophan':'tryptophanCount_detail',
+'Count of tyrosine':'tyrosineCount_detail',
+'Count of tiny mole':'tinyMoleCount_detail',
+'Count of small mole':'smallMoleCount_detail',
+'Percentage of tiny mole':'alaninePercentage_detail',
+'Percentage of small mole':'cysteinePercentage_detail',
+'Percentage of alanine':'asparticAcidPercentage_detail',
+'Percentage of cysteine':'glutamicAcidPercentage_detail',
+'Percentage of aspartic acid':'phenylalaninePercentage_detail',
+'Percentage of glutamic acid':'glycinePercentage_detail',
+'Percentage of phenylalanine':'histidinePercentage_detail',
+'Percentage of glycine':'isoleucinePercentage_detail',
+'Percentage of histidine':'lysinePercentage_detail',
+'Percentage of isoleucine':'leucinePercentage_detail',
+'Percentage of lysine':'methioninePercentage_detail',
+'Percentage of leucine':'asparaginePercentage_detail',
+'Percentage of methionine':'prolinePercentage_detail',
+'Percentage of asparagine':'glutaminePercentage_detail',
+'Percentage of proline':'argininePercentage_detail',
+'Percentage of glutamine':'serinePercentage_detail',
+'Percentage of arginine':'threoninePercentage_detail',
+'Percentage of serine':'valinePercentage_detail',
+'Percentage of threonine':'tryptophanPercentage_detail',
+'Percentage of valine':'tyrosinePercentage_detail',
+'Percentage of tryptophan':'tinyMolePercentage_detail',
+'Percentage of tyrosine':'smallMolePercentage_detail',
+'Dayhoff statistic of alanine':'alanineDayhoffStat_detail',
+'Dayhoff statistic of cysteine':'cysteineDayhoffStat_detail',
+'Dayhoff statistic of aspartic acid':'asparticAcidDayhoffStat_detail',
+'Dayhoff statistic of glutamic acid':'glutamicAcidDayhoffStat_detail',
+'Dayhoff statistic of phenylalanine':'phenylalanineDayhoffStat_detail',
+'Dayhoff statistic of glycine':'glycineDayhoffStat_detail',
+'Dayhoff statistic of histidine':'histidineDayhoffStat_detail',
+'Dayhoff statistic of isoleucine':'isoleucineDayhoffStat_detail',
+'Dayhoff statistic of lysine':'lysineDayhoffStat_detail',
+'Dayhoff statistic of leucine':'leucineDayhoffStat_detail',
+'Dayhoff statistic of methionine':'methionineDayhoffStat_detail',
+'Dayhoff statistic of asparagine':'asparagineDayhoffStat_detail',
+'Dayhoff statistic of proline':'prolineDayhoffStat_detail',
+'Dayhoff statistic of glutamine':'glutamineDayhoffStat_detail',
+'Dayhoff statistic of arginine':'arginineDayhoffStat_detail',
+'Dayhoff statistic of serine':'serineDayhoffStat_detail',
+'Dayhoff statistic of threonine':'threonineDayhoffStat_detail',
+'Dayhoff statistic of valine':'valineDayhoffStat_detail',
+'Dayhoff statistic of tryptophan':'tryptophanDayhoffStat_detail',
+'Dayhoff statistic of tyrosine':'tyrosineDayhoffStat_detail',
+'Count of carbon sparing':'carbonCount_detail',
+'Count of nitrogen sparing':'nitrogenCount_detail',
+'Count of sulphur sparing':'sulphurCount_detail',
+'Count of oxygen sparing':'oxygenCount_detail',
+'Count of hydrogen sparing':'hydrogenCount_detail',
+'Average carbon sparing':'carbonSparingAverage_detail',
+'Average nitrogen sparing':'nitrogenSparingAverage_detail',
+'Average sulphur sparing':'sulphurSparingAverage_detail',
+'Average oxygen sparing':'oxygenSparingAverage_detail',
+'Average hydrogen sparing':'hydrogenSparingAverage_detail',
+'Aromaticity':'aromaticity_detail',
+'Instability Index':'instabilityIndex_detail',
+'Isoelectric Point':'isoelectricPoint_detail',
+'Grand average of hydropathy (GRAVY)':'gravy_detail',
+'Charge':'charge_detail',
+'Molar Extinction Coefficient A280':'molarExtinctionCoefficient_detail',
+'Absobance A280':'absobance_detail',
+'Probability of Expression Inclusion Bodies':'probabilityOfExpression_detail',
+'Count of aliphatic mole':'aliphaticMoleCount_detail',
+'Count of aromatic mole':'aromaticMoleCount_detail',
+'Count of polar mole':'polarMoleCount_detail',
+'Count of non polar mole':'nonPolarMoleCount_detail',
+'Count of charged mole':'chargedMoleCount_detail',
+'Count of acidic mole':'acidicMoleCount_detail',
+'Count of basic mole':'basicMoleCount_detail',
+'Percentage of aliphatic mole':'aliphaticMolePercentage_detail',
+'Percentage of aromatic mole':'aromaticMolePercentage_detail',
+'Percentage of polar mole':'polarMolePercentage_detail',
+'Percentage of non polar mole':'nonPolarMolePercentage_detail',
+'Percentage of charged mole':'chargedMolePercentage_detail',
+'Percentage of acidic mole':'acidicMolePercentage_detail',
+'Percentage of basic mole':'basicMolePercentage_detail',
+'Secondary helix fraction':'helixFraction_detail',
+'Secondary turn fraction':'turnFraction_detail',
+'Secondary sheet fraction':'sheetFraction_detail',
+'Count of secondary helix':'secondaryHelixCount_detail',
+'Count of secondary sheet':'secondarySheetCount_detail',
+'Count of secondary turns':'secondaryTurnsCount_detail',
+'Count of secondary coil':'secondaryCoilCount_detail',
+'Percentage of secondary helix':'secondaryHelixPercentage_detail',
+'Percentage of secondary sheet':'secondarySheetPercentage_detail',
+'Percentage of secondary turns':'secondaryTurnsPercentage_detail',
+'Percentage of secondary coil':'secondaryCoilPercentage_detail',
+'C-mannosylation sites':'cMannosylation_detail',
+'Proteasomal cleavages (MHC ligands)':'proteasomalCleavage_detail',
+'N-linked glycosylation sites':'nLinkedGlycosylation_detail',
+'Generic phosphorylation sites of serine':'genericPhosphorylationSerine_detail',
+'Generic phosphorylation sites of threonine':'genericPhosphorylationThreonine_detail',
+'Generic phosphorylation sites of tyrosine':'genericPhosphorylationTyrosine_detail',
+'Arginine and lysine propeptide cleavage sites':'arginineLysinePropeptideCleavage_detail',
+'Binding Regions in Disordered Proteins':'bindingRegionsDisordered_detail',
+'Mitochondrial targeting peptide (mTP)':'mTP_detail',
+'Secretory pathway signal peptide (SP)':'sP_detail',
+'Other subcellular location':'otherLocation_detail',
+'Count of transmembrane helices':'transmembraneHelices_detail',
+'Presence of signal peptides':'signalPeptides_detail',
+'Count of linear B-cell epitopes':'linearBcellEpitopes_detail',
+'Class I Immunogenicity score':'classIimmunogenicity'}
+
+diction = {
+        {% for k, v in detailFeaturesDic.iteritems %}
+        "{{ k }}": {{ v }}{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    }
+
 $(document).ready( function () {
 	$('#eukaryotic_feature').DataTable({
 		"scrollX": true,
         dom: 'Bfrtip',
 		scrollY: '50vh',
         scrollCollapse: true,
+		fixedColumns: true,
         paging: false,
+		destroy: true,
         buttons: [
             'copyHtml5',
             'excelHtml5',
             'csvHtml5',
             'pdfHtml5',
 			'print'
-        ]
+        ],
+		fixedColumns:   {
+            leftColumns: 1,
+            rightColumns: 0
+        }
 	});
-  } );
-  
+	
+	 var table = $('#eukaryotic_feature').DataTable();
+    $('#eukaryotic_feature tbody td').click (function () {
+      $('#eukaryotic_feature tbody td').not(this).removeClass('cell_selected');
+      $(this).toggleClass('cell_selected');
+		var idx = table.cell( this ).index().column;
+		var col_header = table.column( idx ).header();
+		var row_header = $(this).siblings("td");
+      tableData=$(col_header).html() + ' for ' + $(row_header).html()
+	  select(tableData);
+	} );
 
+} );
+  
+  function select(seqID)
+{
+document.getElementById('selection').innerHTML = "Selected: " + seqID;
+}
+</script>
+
+
+<center> 
+<br></br>
+
+<h3>Click on a cell of the Feature table, then click on the Detail View button</h3>
+
+<liBig><a href="/eukaryotic_app" class="roundBig blue">Detail View<span class="roundBig">View detail of selected protein</span></a></liBig>
+
+<div id="loading">
+  <img id="loading-image" src="custom/spinner.gif" alt="Loading..." />
+</div>
+
+<script language="javascript" type="text/javascript">
+     $(window).load(function() {
+     $('#loading').hide();
+  });
+  
 </script>
 
 {% endblock %}
